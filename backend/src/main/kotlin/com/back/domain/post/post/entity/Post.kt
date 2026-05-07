@@ -9,7 +9,7 @@ import java.util.*
 
 @Entity
 class Post(
-    @ManyToOne(fetch = FetchType.LAZY) var author: Member,
+    @ManyToOne(fetch = FetchType.EAGER) var author: Member,
     var title: String,
     var content: String,
     @OneToMany(
@@ -19,7 +19,7 @@ class Post(
         orphanRemoval = true
     )
     val comments: MutableList<Comment> = ArrayList<Comment>()
-    ) :
+) :
     BaseEntity(0) {
 
     constructor(author: Member, title: String, content: String) : this(author, title, content, ArrayList<Comment>())
